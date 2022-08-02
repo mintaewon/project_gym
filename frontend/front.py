@@ -8,131 +8,59 @@ st.markdown('---------')
 
 date = st.date_input('오늘 날짜')
 
-if st.button("프리웨이트존"):
+def req(name, num):
     data = {
-        'name':'FreeWeight',
-        'num':0
+        'name':name,
+        'num':num
     }
     requests.post("http://localhost:8000/info/", json=data)
     st.write('Success')
     st.write(datetime.now())
 
+if st.button("프리웨이트존"):
+    req('Freeweight',0)
+
 if st.button("스미스머신"):
-    data = {
-        'name':'SmithMachine',
-        'num':1
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('SmithMachine',1)
 
 if st.button("파워레그프레스"):
-    data = {
-        'name':'PowerLegPress',
-        'num':2
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('PowerLegPress',2)
 
 if st.button("파워랙"):
-    data = {
-        'name':'PowerRack',
-        'num':3
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('PowerRack',3)
 
 if st.button("인클라인벤치"):
-    data = {
-        'name':'InclineBench',
-        'num':4
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('InclineBench',4)
 
 if st.button("플랫벤치"):
-    data = {
-        'name':'FlatBench',
-        'num':5
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('FlatBench',5)
 
 if st.button("숄더프레스머신"):
-    data = {
-        'name':'ShoulderPressMachine',
-        'num':6
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('ShoulderPressMachine',6)
 
 if st.button("케이블"):
-    data = {
-        'name':'Cable',
-        'num':7
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('Cable',7)
 
 if st.button("랫풀다운"):
-    data = {
-        'name':'LatPulldown',
-        'num':8
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('LatPulldown',8)
 
 if st.button("체스트플라이 머신"):
-    data = {
-        'name':'ChestFlyMachine',
-        'num':9
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('ChestFlyMachine',9)
 
 if st.button("체스트프레스 머신"):
-    data = {
-        'name':'ChestPressMachine',
-        'num':10
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('ChestPressMachine',10)
 
 if st.button("시티드로우머신"):
-    data = {
-        'name':'SeatedRowMachine',
-        'num':11
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('SeatedRowMachine',11)
 
 if st.button("레그프레스머신"):
-    data = {
-        'name':'LegPressMachine',
-        'num':12
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('LegPressMachine',12)
 
 if st.button("이너타이머신"):
-    data = {
-        'name':'InnerThighMachine',
-        'num':13
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('InnerThighMachine',13)
 
 if st.button("레그 익스텐션"):
-    data = {
-        'name':'LegExtension',
-        'num':14
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('LegExtension',14)
 
 if st.button("레그컬"):
-    data = {
-        'name':'LegCurl',
-        'num':15
-    }
-    requests.post("http://localhost:8000/info/", json=data)
-    st.write(datetime.now())
+    req('LegCurl',15)
