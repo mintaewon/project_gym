@@ -13,7 +13,7 @@ def req(name, num):
         'name':name,
         'num':num
     }
-    requests.post("http://localhost:8000/info/", json=data)
+    requests.post("http://host.docker.internal:8000/info/", json=data)
     st.write('Success')
     st.write(datetime.now())
 
