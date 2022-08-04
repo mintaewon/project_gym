@@ -5,10 +5,12 @@ WORKDIR /app
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
+EXPOSE 8000
+
 RUN apt-get update && apt-get install -y
 RUN pip install poetry && \
     poetry config virtualenvs.create false && \
-    poetry install --no-dev && \
+    poetry install && \
     poetry shell
 
 CMD ["python", "-m", "app"]

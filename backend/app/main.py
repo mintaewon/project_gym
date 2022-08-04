@@ -17,7 +17,6 @@ def root():
 @app.get("/info/")
 async def get_info():
     ls = []
-    print(db)
     for i in db:
         ls.append({'name':i['name'], 'use':i['use'], 'date':i['date']})
     return ls
