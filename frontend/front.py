@@ -1,6 +1,6 @@
 import streamlit as st
-from datetime import datetime
 import requests
+import time
 
 st.title('gym')
 
@@ -17,7 +17,7 @@ def req(name, num, weather=select_weather):
     }
     requests.post("http://host.docker.internal:8000/info/", json=data)
     st.write('Success')
-    st.write(datetime.now())
+    st.write(time.strftime('%Y-%m-%d %H:%M:%S'))
 
 if st.button("프리웨이트존"):
     req('Freeweight',0)

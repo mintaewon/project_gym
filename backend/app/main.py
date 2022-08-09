@@ -1,6 +1,7 @@
 from datetime import datetime
 from fastapi import FastAPI
 from pydantic import BaseModel
+import time
 
 class Data(BaseModel):
     name : str
@@ -28,6 +29,6 @@ async def create_info(data:Data):
     df = data.dict()
     d[df['num']] = 1
     df['use'] = d
-    df['date'] = str(datetime.now())
+    df['date'] = time.strftime('%Y-%m-%d %H:%M:%S')
     db.append(df)
     return db[-1]
