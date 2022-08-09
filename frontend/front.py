@@ -7,11 +7,13 @@ st.title('gym')
 st.markdown('---------')
 
 date = st.date_input('오늘 날짜')
+select_weather = st.radio("오늘 날씨", ("맑음","비","눈"))
 
-def req(name, num):
+def req(name, num, weather=select_weather):
     data = {
         'name':name,
-        'num':num
+        'num':num,
+        'weather':weather
     }
     requests.post("http://host.docker.internal:8000/info/", json=data)
     st.write('Success')
