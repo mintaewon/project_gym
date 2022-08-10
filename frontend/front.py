@@ -15,7 +15,7 @@ def req(name, num, weather=select_weather):
         'num':num,
         'weather':weather
     }
-    requests.post("http://host.docker.internal:8000/info/", json=data)
+    requests.post("http://34.64.145.80:8000/info/", json=data)
     st.write('Success')
     st.write(time.strftime('%Y-%m-%d %H:%M:%S'))
 
