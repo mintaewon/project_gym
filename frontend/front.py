@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-import time
 
 st.title('gym')
 
@@ -15,9 +14,10 @@ def req(name, num, weather=select_weather):
         'num':num,
         'weather':weather
     }
-    requests.post("http://34.64.145.80:8000/info/", json=data)
+    res = requests.post("http://34.64.145.80:8000/info/", json=data)
+    # res = requests.post("http://localhost:8000/info/", json=data)
     st.write('Success')
-    st.write(time.strftime('%Y-%m-%d %H:%M:%S'))
+    st.write(res.json()['date'])
 
 if st.button("프리웨이트존"):
     req('Freeweight',0)

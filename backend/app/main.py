@@ -1,7 +1,7 @@
 from datetime import datetime
 from fastapi import FastAPI
 from pydantic import BaseModel
-import time
+import pytz
 
 class Data(BaseModel):
     name : str
@@ -11,6 +11,10 @@ class Data(BaseModel):
 db = []
 
 app = FastAPI()
+
+def now_date_time():
+    tz = pytz.timezone('Asia/Seoul')
+    return datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
 
 @app.get("/")
 def root():
@@ -29,6 +33,6 @@ async def create_info(data:Data):
     df = data.dict()
     d[df['num']] = 1
     df['use'] = d
-    df['date'] = time.strftime('%Y-%m-%d %H:%M:%S')
+    df['date'] = now_date_time()
     db.append(df)
     return db[-1]

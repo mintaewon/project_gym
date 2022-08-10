@@ -8,6 +8,7 @@ authors = ["mintaewon <taewon1230@naver.com>"]
 python = "^3.10"
 fastapi = "^0.79.0"
 uvicorn = "^0.18.2"
+pytz = "^2022.1"
 
 [tool.poetry.dev-dependencies]
 
