@@ -8,7 +8,7 @@ st.markdown('---------')
 date = st.date_input('오늘 날짜')
 select_weather = st.radio("오늘 날씨", ("맑음","비","눈"))
 
-def req(name, num, weather=select_weather):
+def req(name:str, num:list, weather:str=select_weather):
     data = {
         'name':name,
         'num':num,
