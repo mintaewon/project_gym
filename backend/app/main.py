@@ -5,8 +5,7 @@ import pytz
 from .db import insert_data
 
 class Data(BaseModel):
-    name : str
-    num : int
+    use : list
     weather : str
 
 db = []
@@ -25,15 +24,12 @@ def root():
 async def get_info():
     ls = []
     for i in db:
-        ls.append({'name':i['name'], 'use':i['use'], 'date':i['date'], 'weather':i['weather']})
+        ls.append({'date':i['date'], 'weather':i['weather'], 'use':i['use']})
     return ls
 
 @app.post("/info/")
 async def create_info(data:Data):
-    d = ['0']*16
     df = data.dict()
-    d[df['num']] = '1'
-    df['use'] = d
     df['date'] = now_date_time()
     db.append(df)
     query_data = []
@@ -41,5 +37,4 @@ async def create_info(data:Data):
     query_data.append(df['weather'])
     query_data.extend(df['use'])
     insert_data(tuple(query_data))
-    print(tuple(query_data))
     return db[-1]

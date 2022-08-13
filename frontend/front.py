@@ -8,61 +8,50 @@ st.markdown('---------')
 date = st.date_input('오늘 날짜')
 select_weather = st.radio("오늘 날씨", ("맑음","비","눈"))
 
-def req(name:str, num:list, weather:str=select_weather):
+def req(use:list, weather:str=select_weather):
     data = {
-        'name':name,
-        'num':num,
+        'use':use,
         'weather':weather
     }
-    res = requests.post("http://34.64.145.80:8000/info/", json=data)
-    # res = requests.post("http://localhost:8000/info/", json=data)
+    # res = requests.post("http://34.64.145.80:8000/info/", json=data)
+    res = requests.post("http://localhost:8000/info/", json=data)
     st.write('Success')
     st.write(res.json()['date'])
 
-if st.button("프리웨이트존"):
-    req('Freeweight',0)
+equipments = [
+    "프리웨이트",
+    "프리웨이트(PTzone)",
+    "런닝 머신",
+    "싸이클",
+    "파워랙",
+    "파워랙(PTzone)",
+    "스미스 머신",
+    "파워 레그프레스",
+    "플랫 벤치",
+    "인클라인 벤치",
+    "케이블",
+    "케이블(PTzone)",
+    "힙 익스텐션 머신",
+    "레그프레스 머신",
+    "이너싸이",
+    "레그 익스텐션",
+    "레그 컬",
+    "숄더프레스 머신",
+    "체스트 플라이 머신",
+    "체스트 프레스 머신",
+    "시티드 로우 머신",
+    "랫풀다운",
+    "랫풀다운(PTzone)",
+    "싯업 벤치",
+    "싯업 벤치(PTzone)",
+    "백 익스텐션 머신",
+    "어시스트 풀업 머신",
+]
 
-if st.button("스미스머신"):
-    req('SmithMachine',1)
+user_num_ls = []
 
-if st.button("파워레그프레스"):
-    req('PowerLegPress',2)
+for eq in equipments:
+    user_num_ls.append(st.number_input(eq, step=1, min_value=0))
 
-if st.button("파워랙"):
-    req('PowerRack',3)
-
-if st.button("인클라인벤치"):
-    req('InclineBench',4)
-
-if st.button("플랫벤치"):
-    req('FlatBench',5)
-
-if st.button("숄더프레스머신"):
-    req('ShoulderPressMachine',6)
-
-if st.button("케이블"):
-    req('Cable',7)
-
-if st.button("랫풀다운"):
-    req('LatPulldown',8)
-
-if st.button("체스트플라이 머신"):
-    req('ChestFlyMachine',9)
-
-if st.button("체스트프레스 머신"):
-    req('ChestPressMachine',10)
-
-if st.button("시티드로우머신"):
-    req('SeatedRowMachine',11)
-
-if st.button("레그프레스머신"):
-    req('LegPressMachine',12)
-
-if st.button("이너타이머신"):
-    req('InnerThighMachine',13)
-
-if st.button("레그 익스텐션"):
-    req('LegExtension',14)
-
-if st.button("레그컬"):
-    req('LegCurl',15)
+if st.button("수집"):
+    req(user_num_ls)
