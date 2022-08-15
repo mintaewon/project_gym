@@ -17,4 +17,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: 22
-        script: sh deploy_ssh.sh
+        script: |
+          cd project_gym
+          sh deploy_ssh.sh
