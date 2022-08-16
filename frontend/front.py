@@ -13,7 +13,8 @@ def req(use:list, weather:str=select_weather):
         'use':use,
         'weather':weather
     }
-    res = requests.post("http://34.64.145.80:8000/info/", json=data)
+    # res = requests.post("http://34.64.145.80:8000/info/", json=data)
+    res = requests.post("http://host.docker.internal:8000/info/", json=data)
     # res = requests.post("http://localhost:8000/info/", json=data)
     st.write('Success')
     st.write(res.json()['date'])
