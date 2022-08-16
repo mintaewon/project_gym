@@ -57,4 +57,4 @@ for eq in equipments:
 if st.button("수집"):
     req(user_num_ls)
 
-st.button("db다운로드")
+# st.button("db다운로드")
