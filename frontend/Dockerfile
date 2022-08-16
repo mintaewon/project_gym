@@ -8,7 +8,8 @@ ENV PYTHONUNBUFFERED=1
 EXPOSE 8501
 
 RUN apt-get update && apt-get install -y
-RUN pip install poetry && \
+RUN pip install --upgrade pip && \
+    pip install poetry && \
     poetry config virtualenvs.create false && \
     poetry install && \
     poetry shell
