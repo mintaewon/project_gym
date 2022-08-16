@@ -10,6 +10,7 @@ EXPOSE 8000
 RUN apt-get update && apt-get install -y
 RUN pip install --upgrade pip && \
     pip install poetry && \
+    poetry config experimental.new-installer false && \
     poetry config virtualenvs.create false && \
     poetry install && \
     poetry shell
