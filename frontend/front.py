@@ -13,9 +13,9 @@ def req(use:list, weather:str=select_weather):
         'use':use,
         'weather':weather
     }
-    res = requests.post("http://34.64.172.90:8000/info/", json=data)
+    # res = requests.post("http://34.64.172.90:8000/info/", json=data)
     # res = requests.post("http://host.docker.internal:8000/info/", json=data)
-    # res = requests.post("http://localhost:8000/info/", json=data)
+    res = requests.post("http://localhost:8000/info/", json=data)
     st.write('Success')
     st.write(res.json()['date'])
 
@@ -58,4 +58,5 @@ if st.button("수집"):
     req(user_num_ls)
 
 st.write('버튼 만들 예정')
-st.button("db다운로드")
+if st.button("db다운로드"):
+    requests.get("http://host.docker.internal:8000/down/")
