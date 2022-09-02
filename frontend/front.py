@@ -59,4 +59,4 @@ if st.button("수집"):
 
 st.write('버튼 만들 예정')
 if st.button("db다운로드"):
-    requests.get("http://host.docker.internal:8000/down/")
+    requests.get("http://localhost:8000/down/")

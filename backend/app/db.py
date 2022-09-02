@@ -24,3 +24,4 @@ def insert_data(df_row:tuple):
 def select_data():
     curs.execute(selectsql)
     conn.commit()
+    return curs.fetchall()
