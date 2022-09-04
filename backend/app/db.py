@@ -16,7 +16,12 @@ curs = conn.cursor(pymysql.cursors.DictCursor)
 
 # ==== insert ====
 sql = """insert into USEDATA values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-
+selectsql = "select * from USEDATA"
 def insert_data(df_row:tuple):
     curs.execute(sql, df_row)
     conn.commit()
+
+def select_data():
+    curs.execute(selectsql)
+    conn.commit()
+    return curs.fetchall()

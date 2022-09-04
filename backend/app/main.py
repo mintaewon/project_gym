@@ -1,8 +1,11 @@
 from datetime import datetime
 from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import pytz
-from .db import insert_data
+import pandas as pd
+from .db import insert_data, select_data
+import io
 
 class Data(BaseModel):
     use : list
@@ -38,3 +41,11 @@ async def create_info(data:Data):
     query_data.extend(df['use'])
     insert_data(tuple(query_data))
     return db[-1]
+
+@app.get("/down/")
+async def down_data():
+    data = pd.DataFrame(select_data())
+    response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
+    response.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    return response
+    
