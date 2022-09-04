@@ -8,7 +8,14 @@ st.markdown('---------')
 date = st.date_input('오늘 날짜')
 select_weather = st.radio("오늘 날씨", ("맑음","비","눈"))
 
-def req(use:list, weather:str=select_weather):
+if select_weather=="맑음":
+    WT = 'SUNNY'
+elif select_weather=="비":
+    WT = 'RAIN'
+elif select_weather=="눈":
+    WT = 'SNOW'
+
+def req(use:list, weather:str=WT):
     data = {
         'use':use,
         'weather':weather
@@ -57,5 +64,9 @@ for eq in equipments:
 if st.button("수집"):
     req(user_num_ls)
 
-st.write('버튼 만들 예정')
-st.button("db다운로드")
+st.download_button(
+    label='DB 다운로드',
+    data=requests.get("http://localhost:8000/down/").content.decode('utf-8'),
+    file_name='gym_data.csv',
+    mime='text/csv'
+    )
