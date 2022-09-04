@@ -45,10 +45,7 @@ async def create_info(data:Data):
 @app.get("/down/")
 async def down_data():
     data = pd.DataFrame(select_data())
-    stream = io.StringIO()
-    # data.to_csv(stream, index=False)
     response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
-    # response = StreamingResponse(iter([stream.getvalue()]), media_type="text/csv")
     return response
     
