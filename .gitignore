@@ -1,3 +1,6 @@
 backend/app/config.json
+frontend/config.json
 .github/
 *.pyc
+frontend/.front
+backend/.back
