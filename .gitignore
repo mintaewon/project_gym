@@ -4,3 +4,6 @@ frontend/config.json
 *.pyc
 frontend/.front
 backend/.back
+page/.web
+page/app/config.json
+

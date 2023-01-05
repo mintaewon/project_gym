@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+    <title>GYM Project</title>
+    <style>
+        .nav-left {
+            font-size: 80px;
+            color: white;
+            background-color: #999999;
+        }
+
+        #kindOfMachine {
+            font-size: 30px;
+            padding-bottom: 20px;
+        }
+
+        #useCount {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            GYM
+        </div>
+        <hr />
+    </nav>
+    <make-machine name="프리웨이트"></make-machine>
+    <make-machine name="프리웨이트(PTzone)"></make-machine>
+    <make-machine name="런닝머신"></make-machine>
+    <make-machine name="싸이클"></make-machine>
+    <make-machine name="파워렉"></make-machine>
+    <make-machine name="파어렉(PTzone)"></make-machine>
+    <make-machine name="스미스머신"></make-machine>
+    <make-machine name="파워 레그프레스"></make-machine>
+    <make-machine name="플랫 벤치"></make-machine>
+    <make-machine name="인클라인 벤치"></make-machine>
+    <make-machine name="케이블"></make-machine>
+    <make-machine name="케이블(PTzone)"></make-machine>
+    <make-machine name="힙 익스텐션 머신"></make-machine>
+    <make-machine name="레그프레스 머신"></make-machine>
+    <make-machine name="이너싸이"></make-machine>
+    <make-machine name="레그 익스텐션"></make-machine>
+    <make-machine name="레그 컬"></make-machine>
+    <make-machine name="숄더프레스 머신"></make-machine>
+    <make-machine name="체스트 플라이 머신"></make-machine>
+    <make-machine name="체스트 프레스 머신"></make-machine>
+    <make-machine name="시티드 로우 머신"></make-machine>
+    <make-machine name="랫풀다운"></make-machine>
+    <make-machine name="랫풀다운(PTzone)"></make-machine>
+    <make-machine name="싯업 벤치"></make-machine>
+    <make-machine name="싯업 벤치(PTzone)"></make-machine>
+    <make-machine name="백 익스텐션 머신"></make-machine>
+    <make-machine name="어시스트 풀업 머신"></make-machine>
+
+    <button>수집</button>
+
+    <!-- <script src="app.js"></script> -->
+    <script>
+        class MakeGymMachine extends HTMLElement {
+            connectedCallback() {
+                let MachineName = document.createElement('div');
+                MachineName.innerText = this.getAttribute('name');
+                MachineName.id = "kindOfMachine"
+                this.appendChild(MachineName);
+                let MinusButton = document.createElement('button');
+                MinusButton.innerText = '-';
+                this.appendChild(MinusButton);
+                let PlusButton = document.createElement('button');
+                PlusButton.innerText = '+';
+                this.appendChild(PlusButton);
+                let Cnt = document.createElement('div');
+                Cnt.innerText = 0;
+                Cnt.id = "userCount"
+                this.appendChild(Cnt);
+
+
+                function plusClick() {
+                    Cnt.innerText = parseInt(Cnt.innerText) + 1;
+                }
+                function minusClick() {
+                    Cnt.innerText = parseInt(Cnt.innerText) - 1;
+                    if (Cnt.innerText < 0) {
+                        Cnt.innerText = 0;
+                    }
+                }
+
+
+                PlusButton.addEventListener("click", plusClick);
+                MinusButton.addEventListener("click", minusClick);
+            }
+        }
+        customElements.define('make-machine', MakeGymMachine)
+
+        function collectData() {
+            let result = [];
+            findCnt = document.querySelectorAll("make-machine #userCount");
+            findCnt.forEach(element => { result.push(Number(element.innerText)) });
+            console.log(result);
+
+        }
+    </script>
+</body>
+
+</html>
