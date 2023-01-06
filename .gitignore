@@ -1,9 +1,5 @@
-backend/app/config.json
-frontend/config.json
 .github/
 *.pyc
-frontend/.front
-backend/.back
+local-demo/frontend/.front
+local-demo/backend/.back
 page/.web
-page/app/config.json
-

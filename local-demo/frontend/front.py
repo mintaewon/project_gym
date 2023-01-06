@@ -24,8 +24,8 @@ def req(use:list, weather:str=WT):
         'use':use,
         'weather':weather
     }
-    res = requests.post(config['ipAdress']['ip'], json=data)
-    # res = requests.post("http://host.docker.internal:8000/info/", json=data)
+    # res = requests.post(config['ipAdress']['ip'], json=data)
+    res = requests.post("http://host.docker.internal:8000/info/", json=data)
     # res = requests.post("http://localhost:8000/info/", json=data)
     st.write('Success')
     st.write(res.json()['date'])
@@ -68,10 +68,12 @@ for eq in equipments:
 if st.button("수집"):
     req(user_num_ls)
 
-st.download_button(
-    label='DB 다운로드',
-    # data=requests.get("http://35.239.56.241:8000/down/").content.decode('utf-8'),
-    data=requests.get("http://localhost:8000/down/").content.decode('utf-8'),
-    file_name='gym_data.csv',
-    mime='text/csv'
-    )
+# st.download_button(
+#     label='DB 다운로드',
+#     # data=requests.get("http://35.239.56.241:8000/down/").content.decode('utf-8'),
+#     data=requests.get("http://localhost:8000/down/").content.decode('utf-8'),
+#     file_name='gym_data.csv',
+#     mime='text/csv'
+#     )
+
+st.button("DB다운로드")
