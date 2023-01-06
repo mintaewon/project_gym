@@ -3,3 +3,5 @@
 local-demo/frontend/.front
 local-demo/backend/.back
 page/.web
+.venv
+analysis/gymdata.csv
