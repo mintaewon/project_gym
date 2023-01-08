@@ -2,6 +2,9 @@
 *.pyc
 local-demo/frontend/.front
 local-demo/backend/.back
-page/.web
 .venv
 analysis/gymdata.csv
+page/.web
+page/package-lock.json
+page/package.json
+page/node_modules

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./style.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>GYM Project</title>
     <style>
         .nav-left {
@@ -60,9 +60,8 @@
     <make-machine name="백 익스텐션 머신"></make-machine>
     <make-machine name="어시스트 풀업 머신"></make-machine>
 
-    <button>수집</button>
+    <input type="button" name="collectbutton" value="수집" onclick="postClickEvent()">
 
-    <!-- <script src="app.js"></script> -->
     <script>
         class MakeGymMachine extends HTMLElement {
             connectedCallback() {
@@ -104,7 +103,23 @@
             findCnt = document.querySelectorAll("make-machine #userCount");
             findCnt.forEach(element => { result.push(Number(element.innerText)) });
             console.log(result);
+        }
+        function postClickEvent(){
+            let result = [];
+            findCnt = document.querySelectorAll("make-machine #userCount");
+            findCnt.forEach(element => { result.push(Number(element.innerText)) });
+            const data = {
+                "use":result
+            };
 
+            axios.post("/info", data)
+            .then(function (response){
+                console.log("성공");
+            })
+            .catch(function (error){
+                console.log("실패");
+                console.log(error);
+            });
         }
     </script>
 </body>

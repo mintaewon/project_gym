@@ -34,11 +34,12 @@ async def get_info():
     return ls
 
 @app.post("/info/")
-async def create_info(data:Data):
-    df = data.dict()
+async def create_info(data:dict):
+    df = data
+    df['weather'] = "sunny"
     df['date'] = now_date_time()
     db.append(df)
-    query_data = []
+    print(db)
     # query_data.append(df['date'])
     # query_data.append(df['weather'])
     # query_data.extend(df['use'])
@@ -51,4 +52,3 @@ async def create_info(data:Data):
 #     response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
 #     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
 #     return response
-    
