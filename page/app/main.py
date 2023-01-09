@@ -34,12 +34,11 @@ async def get_info():
     return ls
 
 @app.post("/info/")
-async def create_info(data:dict):
-    df = data
-    df['weather'] = "sunny"
+async def create_info(data:Data):
+    df = data.dict()
     df['date'] = now_date_time()
     db.append(df)
-    print(db)
+    # print(db)
     # query_data.append(df['date'])
     # query_data.append(df['weather'])
     # query_data.extend(df['use'])

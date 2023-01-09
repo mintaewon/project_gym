@@ -9,7 +9,7 @@
     <title>GYM Project</title>
     <style>
         .nav-left {
-            font-size: 80px;
+            font-size: 70px;
             color: white;
             background-color: #999999;
         }
@@ -19,7 +19,15 @@
             padding-bottom: 20px;
         }
 
-        #useCount {
+        .useCount {
+            color: red;
+        }
+        
+        .controlbutton {
+            width: 30px;
+            height: 30px;
+            margin-left: 20px;
+            margin-right: 20px;
             font-size: 20px;
         }
     </style>
@@ -69,16 +77,19 @@
                 MachineName.innerText = this.getAttribute('name');
                 MachineName.id = "kindOfMachine"
                 this.appendChild(MachineName);
+
                 let MinusButton = document.createElement('button');
                 MinusButton.innerText = '-';
+                MinusButton.classList.add("controlbutton")
                 this.appendChild(MinusButton);
+                let Cnt = document.createElement('span');
+                Cnt.innerText = 0;
+                Cnt.classList.add("userCount")
+                this.appendChild(Cnt);
                 let PlusButton = document.createElement('button');
                 PlusButton.innerText = '+';
+                PlusButton.classList.add("controlbutton")
                 this.appendChild(PlusButton);
-                let Cnt = document.createElement('div');
-                Cnt.innerText = 0;
-                Cnt.id = "userCount"
-                this.appendChild(Cnt);
 
 
                 function plusClick() {
@@ -108,11 +119,12 @@
             let result = [];
             findCnt = document.querySelectorAll("make-machine #userCount");
             findCnt.forEach(element => { result.push(Number(element.innerText)) });
-            const data = {
-                "use":result
+            const data_ls = {
+                weather:"Sunny",
+                use:result
             };
 
-            axios.post("/info", data)
+            axios.post("/info", data_ls)
             .then(function (response){
                 console.log("성공");
             })
