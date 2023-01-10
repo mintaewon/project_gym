@@ -9,18 +9,19 @@
     <title>GYM Project</title>
     <style>
         .nav-left {
-            font-size: 70px;
+            font-size: 80px;
             color: white;
             background-color: #999999;
+            margin-bottom: 50px;
         }
 
         #kindOfMachine {
-            font-size: 30px;
-            padding-bottom: 20px;
+            font-size: 25px;
+            
         }
 
-        .useCount {
-            color: red;
+        .userCount {
+            font-size: 25px
         }
         
         .controlbutton {
@@ -29,6 +30,21 @@
             margin-left: 20px;
             margin-right: 20px;
             font-size: 20px;
+        }
+
+        .div-button {
+            margin-top: 50px;
+            font-size: 25px;
+        }
+        make-machine {
+            display: inline-flex;
+            align-items: center;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .div-machine{
+            border-bottom: 1px solid;
         }
     </style>
 </head>
@@ -40,35 +56,36 @@
         </div>
         <hr />
     </nav>
-    <make-machine name="프리웨이트"></make-machine>
-    <make-machine name="프리웨이트(PTzone)"></make-machine>
-    <make-machine name="런닝머신"></make-machine>
-    <make-machine name="싸이클"></make-machine>
-    <make-machine name="파워렉"></make-machine>
-    <make-machine name="파어렉(PTzone)"></make-machine>
-    <make-machine name="스미스머신"></make-machine>
-    <make-machine name="파워 레그프레스"></make-machine>
-    <make-machine name="플랫 벤치"></make-machine>
-    <make-machine name="인클라인 벤치"></make-machine>
-    <make-machine name="케이블"></make-machine>
-    <make-machine name="케이블(PTzone)"></make-machine>
-    <make-machine name="힙 익스텐션 머신"></make-machine>
-    <make-machine name="레그프레스 머신"></make-machine>
-    <make-machine name="이너싸이"></make-machine>
-    <make-machine name="레그 익스텐션"></make-machine>
-    <make-machine name="레그 컬"></make-machine>
-    <make-machine name="숄더프레스 머신"></make-machine>
-    <make-machine name="체스트 플라이 머신"></make-machine>
-    <make-machine name="체스트 프레스 머신"></make-machine>
-    <make-machine name="시티드 로우 머신"></make-machine>
-    <make-machine name="랫풀다운"></make-machine>
-    <make-machine name="랫풀다운(PTzone)"></make-machine>
-    <make-machine name="싯업 벤치"></make-machine>
-    <make-machine name="싯업 벤치(PTzone)"></make-machine>
-    <make-machine name="백 익스텐션 머신"></make-machine>
-    <make-machine name="어시스트 풀업 머신"></make-machine>
-
-    <input type="button" name="collectbutton" value="수집" onclick="postClickEvent()">
+    <div class="div-machine"><make-machine name="프리웨이트"></make-machine></div>
+    <div class="div-machine"><make-machine name="프리웨이트(PTzone)"></make-machine></div>
+    <div class="div-machine"><make-machine name="런닝머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="싸이클"></make-machine></div>
+    <div class="div-machine"><make-machine name="파워렉"></make-machine></div>
+    <div class="div-machine"><make-machine name="파워렉(PTzone)"></make-machine></div>
+    <div class="div-machine"><make-machine name="스미스머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="파워 레그프레스"></make-machine></div>
+    <div class="div-machine"><make-machine name="플랫 벤치"></make-machine></div>
+    <div class="div-machine"><make-machine name="인클라인 벤치"></make-machine></div>
+    <div class="div-machine"><make-machine name="케이블"></make-machine></div>
+    <div class="div-machine"><make-machine name="케이블(PTzone)"></make-machine></div>
+    <div class="div-machine"><make-machine name="힙 익스텐션 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="레그프레스 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="이너싸이"></make-machine></div>
+    <div class="div-machine"><make-machine name="레그 익스텐션"></make-machine></div>
+    <div class="div-machine"><make-machine name="레그 컬"></make-machine></div>
+    <div class="div-machine"><make-machine name="숄더프레스 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="체스트 플라이 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="체스트 프레스 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="시티드 로우 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="랫풀다운"></make-machine></div>
+    <div class="div-machine"><make-machine name="랫풀다운(PTzone)"></make-machine></div>
+    <div class="div-machine"><make-machine name="싯업 벤치"></make-machine></div>
+    <div class="div-machine"><make-machine name="싯업 벤치(PTzone)"></make-machine></div>
+    <div class="div-machine"><make-machine name="백 익스텐션 머신"></make-machine></div>
+    <div class="div-machine"><make-machine name="어시스트 풀업 머신"></make-machine></div>
+    <div>
+        <input class="div-button" type="button" name="collectbutton" value="수집" onclick="postClickEvent()">
+    </div>
 
     <script>
         class MakeGymMachine extends HTMLElement {
@@ -127,6 +144,8 @@
             axios.post("/info", data_ls)
             .then(function (response){
                 console.log("성공");
+                const date = response.data.date;
+                alert(date + " 수집 완료");
             })
             .catch(function (error){
                 console.log("실패");
