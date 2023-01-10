@@ -1,0 +1,8 @@
+{
+    "MysqlDB":{
+        "HOST":"",
+        "USERNAME": "root",
+        "PASSWORD": "",
+        "DATABASE": ""
+    }
+}

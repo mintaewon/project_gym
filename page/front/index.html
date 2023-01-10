@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>GYM Project</title>
+    <style>
+        .nav-left {
+            font-size: 70px;
+            color: white;
+            background-color: #999999;
+        }
+
+        #kindOfMachine {
+            font-size: 30px;
+            padding-bottom: 20px;
+        }
+
+        .useCount {
+            color: red;
+        }
+        
+        .controlbutton {
+            width: 30px;
+            height: 30px;
+            margin-left: 20px;
+            margin-right: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            GYM
+        </div>
+        <hr />
+    </nav>
+    <make-machine name="프리웨이트"></make-machine>
+    <make-machine name="프리웨이트(PTzone)"></make-machine>
+    <make-machine name="런닝머신"></make-machine>
+    <make-machine name="싸이클"></make-machine>
+    <make-machine name="파워렉"></make-machine>
+    <make-machine name="파어렉(PTzone)"></make-machine>
+    <make-machine name="스미스머신"></make-machine>
+    <make-machine name="파워 레그프레스"></make-machine>
+    <make-machine name="플랫 벤치"></make-machine>
+    <make-machine name="인클라인 벤치"></make-machine>
+    <make-machine name="케이블"></make-machine>
+    <make-machine name="케이블(PTzone)"></make-machine>
+    <make-machine name="힙 익스텐션 머신"></make-machine>
+    <make-machine name="레그프레스 머신"></make-machine>
+    <make-machine name="이너싸이"></make-machine>
+    <make-machine name="레그 익스텐션"></make-machine>
+    <make-machine name="레그 컬"></make-machine>
+    <make-machine name="숄더프레스 머신"></make-machine>
+    <make-machine name="체스트 플라이 머신"></make-machine>
+    <make-machine name="체스트 프레스 머신"></make-machine>
+    <make-machine name="시티드 로우 머신"></make-machine>
+    <make-machine name="랫풀다운"></make-machine>
+    <make-machine name="랫풀다운(PTzone)"></make-machine>
+    <make-machine name="싯업 벤치"></make-machine>
+    <make-machine name="싯업 벤치(PTzone)"></make-machine>
+    <make-machine name="백 익스텐션 머신"></make-machine>
+    <make-machine name="어시스트 풀업 머신"></make-machine>
+
+    <input type="button" name="collectbutton" value="수집" onclick="postClickEvent()">
+
+    <script>
+        class MakeGymMachine extends HTMLElement {
+            connectedCallback() {
+                let MachineName = document.createElement('div');
+                MachineName.innerText = this.getAttribute('name');
+                MachineName.id = "kindOfMachine"
+                this.appendChild(MachineName);
+
+                let MinusButton = document.createElement('button');
+                MinusButton.innerText = '-';
+                MinusButton.classList.add("controlbutton")
+                this.appendChild(MinusButton);
+                let Cnt = document.createElement('span');
+                Cnt.innerText = 0;
+                Cnt.classList.add("userCount")
+                this.appendChild(Cnt);
+                let PlusButton = document.createElement('button');
+                PlusButton.innerText = '+';
+                PlusButton.classList.add("controlbutton")
+                this.appendChild(PlusButton);
+
+
+                function plusClick() {
+                    Cnt.innerText = parseInt(Cnt.innerText) + 1;
+                }
+                function minusClick() {
+                    Cnt.innerText = parseInt(Cnt.innerText) - 1;
+                    if (Cnt.innerText < 0) {
+                        Cnt.innerText = 0;
+                    }
+                }
+
+
+                PlusButton.addEventListener("click", plusClick);
+                MinusButton.addEventListener("click", minusClick);
+            }
+        }
+        customElements.define('make-machine', MakeGymMachine)
+
+        function collectData() {
+            let result = [];
+            findCnt = document.querySelectorAll("make-machine #userCount");
+            findCnt.forEach(element => { result.push(Number(element.innerText)) });
+            console.log(result);
+        }
+        function postClickEvent(){
+            let result = [];
+            findCnt = document.querySelectorAll("make-machine #userCount");
+            findCnt.forEach(element => { result.push(Number(element.innerText)) });
+            const data_ls = {
+                weather:"Sunny",
+                use:result
+            };
+
+            axios.post("/info", data_ls)
+            .then(function (response){
+                console.log("성공");
+            })
+            .catch(function (error){
+                console.log("실패");
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+
+</html>
