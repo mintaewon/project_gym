@@ -86,6 +86,9 @@
     <div>
         <input class="div-button" type="button" name="collectbutton" value="수집" onclick="postClickEvent()">
     </div>
+    <div>
+        <input class="div-button" type="button" name="downbutton" value="DB 다운로드" onclick="dataDownEvent()">
+    </div>
 
     <script>
         class MakeGymMachine extends HTMLElement {
@@ -126,15 +129,37 @@
         }
         customElements.define('make-machine', MakeGymMachine)
 
-        function collectData() {
-            let result = [];
-            findCnt = document.querySelectorAll("make-machine #userCount");
-            findCnt.forEach(element => { result.push(Number(element.innerText)) });
-            console.log(result);
-        }
+        // function dataDownEvent() {
+        //     axios({
+        //         url: "/down",
+        //         method: "get",
+        //         responseType: "blob" // 응답 데이터 타입 정의
+        //     })
+        //     .then(function (response){
+        //         console.log("다운로드 성공");
+        //         const blob = new Blob([response.data]);
+
+        //         const fileObjectUrl = window.URL.createObjectURL(blob);
+
+        //         const link = document.createElement("a");
+        //         link.href = fileObjectUrl;
+        //         link.style.display = "none";
+
+        //         link.download = "gymdata.csv";
+
+        //         document.body.appendChild(link);
+        //         link.click();
+        //         link.remove();
+
+        //         window.URL.revokeObjectURL(fileObjectUrl);
+        //     })
+        //     .catch(function (error){
+        //         console.log("다운 실패");
+        //     })
+        // }
         function postClickEvent(){
             let result = [];
-            findCnt = document.querySelectorAll("make-machine #userCount");
+            findCnt = document.querySelectorAll("make-machine .userCount");
             findCnt.forEach(element => { result.push(Number(element.innerText)) });
             const data_ls = {
                 weather:"Sunny",
