@@ -16,7 +16,7 @@
         }
 
         #kindOfMachine {
-            font-size: 25px;
+            font-size: 23px;
             
         }
 
@@ -46,6 +46,9 @@
         .div-machine{
             border-bottom: 1px solid;
         }
+        .selectWeather {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -56,6 +59,13 @@
         </div>
         <hr />
     </nav>
+    <div>
+        <h3>오늘 날씨</h3>
+        <div><label><input class="selectWeather" type="radio" name="Weather" value="Sunny" checked>맑음</label></div>
+        <div><label><input class="selectWeather" type="radio" name="Weather" value="Rain">비</label></div>
+        <div><label><input class="selectWeather" type="radio" name="Weather" value="Snow">눈</label></div>
+    </div>
+    <br>
     <div class="div-machine"><make-machine name="프리웨이트"></make-machine></div>
     <div class="div-machine"><make-machine name="프리웨이트(PTzone)"></make-machine></div>
     <div class="div-machine"><make-machine name="런닝머신"></make-machine></div>
@@ -84,7 +94,7 @@
     <div class="div-machine"><make-machine name="백 익스텐션 머신"></make-machine></div>
     <div class="div-machine"><make-machine name="어시스트 풀업 머신"></make-machine></div>
     <div>
-        <input class="div-button" type="button" name="collectbutton" value="수집" onclick="postClickEvent()">
+        <input class="div-button" type="button" name="collectbutton" value="수집" onclick="postClickEvent(getUseMachines, getWeather)">
     </div>
     <div>
         <input class="div-button" type="button" name="downbutton" value="DB 다운로드" onclick="dataDownEvent()">
@@ -129,41 +139,54 @@
         }
         customElements.define('make-machine', MakeGymMachine)
 
-        // function dataDownEvent() {
-        //     axios({
-        //         url: "/down",
-        //         method: "get",
-        //         responseType: "blob" // 응답 데이터 타입 정의
-        //     })
-        //     .then(function (response){
-        //         console.log("다운로드 성공");
-        //         const blob = new Blob([response.data]);
 
-        //         const fileObjectUrl = window.URL.createObjectURL(blob);
 
-        //         const link = document.createElement("a");
-        //         link.href = fileObjectUrl;
-        //         link.style.display = "none";
+        // 날씨 데이터 가져오기
+        function getWeather(){
+            const weather = document.querySelector('input[name="Weather"]:checked').value;
+            return weather;
+        }
 
-        //         link.download = "gymdata.csv";
-
-        //         document.body.appendChild(link);
-        //         link.click();
-        //         link.remove();
-
-        //         window.URL.revokeObjectURL(fileObjectUrl);
-        //     })
-        //     .catch(function (error){
-        //         console.log("다운 실패");
-        //     })
-        // }
-        function postClickEvent(){
-            let result = [];
+        // 사용인원 데이터 가져오기
+        function getUseMachines(){
+            let usingList = [];
             findCnt = document.querySelectorAll("make-machine .userCount");
-            findCnt.forEach(element => { result.push(Number(element.innerText)) });
+            findCnt.forEach(element => { usingList.push(Number(element.innerText)) });
+            return usingList;
+        }
+
+        function dataDownEvent() {
+            axios({
+                url: "/down",
+                method: "get",
+                responseType: "blob" // 응답 데이터 타입 정의
+            })
+            .then(function (response){
+                console.log("다운로드 성공");
+                const blob = new Blob([response.data]);
+
+                const fileObjectUrl = window.URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+                link.href = fileObjectUrl;
+                link.style.display = "none";
+
+                link.download = "gymdata.csv";
+
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+                window.URL.revokeObjectURL(fileObjectUrl);
+            })
+            .catch(function (error){
+                console.log("다운 실패");
+            })
+        }
+        function postClickEvent(getUseMachines, getWeather){
             const data_ls = {
-                weather:"Sunny",
-                use:result
+                weather:getWeather(),
+                use:getUseMachines()
             };
 
             axios.post("/info", data_ls)
