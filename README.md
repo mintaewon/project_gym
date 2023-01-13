@@ -16,7 +16,7 @@
 
 [Code 위치](https://github.com/mintaewon/project_gym/tree/main/local-demo)
 
-Web : http://35.230.34.77:8501/
+~~URL : http://35.230.34.77:8501/~~     (아래쪽 웹 페이지로 교체)
 
 Front : streamlit
 
@@ -31,6 +31,8 @@ DB : MySQL (GCP Cloud SQL)
 ### 개선 웹
 
 [Code 위치](https://github.com/mintaewon/project_gym/tree/main/page)
+
+URL : http://35.230.34.77:8000/ 
 
 Front : HTML, CSS, JavaScript
 
