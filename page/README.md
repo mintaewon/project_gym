@@ -6,16 +6,18 @@
 
 # Use
 ```
+docker pull mysql:8.0-debian
+
 docker-compose up -d --build
 ```
 
-- 단, local 사용은 데이터베이스와 테이블 생성을 해야함.
+- 단, local 사용은 DB와 테이블 생성을 해야함.
 
 - MySQL 접속 후
 
 ```sql
-CREATE DATABASE GYM;
-USE GYM;
+CREATE DATABASE gym;
+USE gym;
 
 CREATE TABLE TIMELINE
 (
@@ -25,7 +27,7 @@ CREATE TABLE TIMELINE
     PRIMARY KEY(DateTime)
 );
 ```
-
+- app/config.json 에 DB접속 정보 입력
 - 컨테이너 종료 후 다시 실행
 
 ```
