@@ -16,7 +16,7 @@
 
 [Code 위치](https://github.com/mintaewon/project_gym/tree/main/local-demo)
 
-~~URL : http://35.230.34.77:8501/~~     (아래쪽 웹 페이지로 교체)
+~~Web Page : <a href="http://35.230.34.77:8501" target="_blank">***Click URL***</a>~~ (아래쪽 웹 페이지로 교체)
 
 Front : streamlit
 
@@ -32,7 +32,8 @@ DB : MySQL (GCP Cloud SQL)
 
 [Code 위치](https://github.com/mintaewon/project_gym/tree/main/page)
 
-URL : http://35.230.34.77:8000/ 
+Web Page : <a href="http://35.230.34.77:8000" target="_blank">***Click URL***</a>
+
 
 Front : HTML, CSS, JavaScript
 
