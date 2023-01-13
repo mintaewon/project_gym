@@ -11,14 +11,10 @@ docker pull mysql:8.0-debian
 docker-compose up -d --build
 ```
 
-- 단, local 사용은 DB와 테이블 생성을 해야함.
-
+- 사용하기 위해서는 테이블 생성해야함
 - MySQL 접속 후
 
 ```sql
-CREATE DATABASE gym;
-USE gym;
-
 CREATE TABLE TIMELINE
 (
     DateTime varchar(30),
