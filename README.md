@@ -4,12 +4,17 @@
 
 - 데이터 수집 기간 : 2022.08.17 ~ 2022.10.28 중 평일, 48일
 
+- [분석 파일](https://github.com/mintaewon/project_gym/tree/main/analysis)
+
+- [분석 결과](https://docs.google.com/presentation/d/1T2ac3dJJWaO8pacicgMlyHf-mTADRTVmwVfx-WT7M78/edit)
 
 ----
 
 ## 데이터 수집용 웹
 
 ### DEMO
+
+[Code 위치](https://github.com/mintaewon/project_gym/tree/main/local-demo)
 
 Web : http://35.230.34.77:8501/
 
@@ -19,11 +24,13 @@ Back : FastAPI
 
 DB : MySQL (GCP Cloud SQL)
 
-<img src="analysis/img/demopage.GIF"/>
+<img src="img/demopage.PNG"/>
 
 -----
 
-### 개선 웹 (작업중)
+### 개선 웹
+
+[Code 위치](https://github.com/mintaewon/project_gym/tree/main/page)
 
 Front : HTML, CSS, JavaScript
 
@@ -31,6 +38,4 @@ Back : FastAPI
 
 DB : MySQL (내부 DB 구축)
 
-
-## 실행
-docker-compose up -d --build
+<img src="img/webpage.PNG"/>

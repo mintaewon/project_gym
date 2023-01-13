@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,12 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>GYM Project</title>
     <style>
+        .container {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+
         .nav-left {
             font-size: 80px;
             color: white;
@@ -17,13 +24,13 @@
 
         #kindOfMachine {
             font-size: 23px;
-            
+
         }
 
         .userCount {
             font-size: 25px
         }
-        
+
         .controlbutton {
             width: 30px;
             height: 30px;
@@ -36,6 +43,7 @@
             margin-top: 50px;
             font-size: 25px;
         }
+
         make-machine {
             display: inline-flex;
             align-items: center;
@@ -43,9 +51,10 @@
             padding-top: 10px;
         }
 
-        .div-machine{
+        .div-machine {
             border-bottom: 1px solid;
         }
+
         .selectWeather {
             margin-bottom: 20px;
         }
@@ -53,50 +62,55 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav-left">
-            GYM
-        </div>
-        <hr />
-    </nav>
-    <div>
+    <div class="container">
+        <nav>
+            <div class="nav-left">
+                GYM
+            </div>
+            <hr />
+        </nav>
+    </div>
+    <div class="container">
         <h3>오늘 날씨</h3>
         <div><label><input class="selectWeather" type="radio" name="Weather" value="Sunny" checked>맑음</label></div>
         <div><label><input class="selectWeather" type="radio" name="Weather" value="Rain">비</label></div>
         <div><label><input class="selectWeather" type="radio" name="Weather" value="Snow">눈</label></div>
     </div>
     <br>
-    <div class="div-machine"><make-machine name="프리웨이트"></make-machine></div>
-    <div class="div-machine"><make-machine name="프리웨이트(PTzone)"></make-machine></div>
-    <div class="div-machine"><make-machine name="런닝머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="싸이클"></make-machine></div>
-    <div class="div-machine"><make-machine name="파워렉"></make-machine></div>
-    <div class="div-machine"><make-machine name="파워렉(PTzone)"></make-machine></div>
-    <div class="div-machine"><make-machine name="스미스머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="파워 레그프레스"></make-machine></div>
-    <div class="div-machine"><make-machine name="플랫 벤치"></make-machine></div>
-    <div class="div-machine"><make-machine name="인클라인 벤치"></make-machine></div>
-    <div class="div-machine"><make-machine name="케이블"></make-machine></div>
-    <div class="div-machine"><make-machine name="케이블(PTzone)"></make-machine></div>
-    <div class="div-machine"><make-machine name="힙 익스텐션 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="레그프레스 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="이너싸이"></make-machine></div>
-    <div class="div-machine"><make-machine name="레그 익스텐션"></make-machine></div>
-    <div class="div-machine"><make-machine name="레그 컬"></make-machine></div>
-    <div class="div-machine"><make-machine name="숄더프레스 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="체스트 플라이 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="체스트 프레스 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="시티드 로우 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="랫풀다운"></make-machine></div>
-    <div class="div-machine"><make-machine name="랫풀다운(PTzone)"></make-machine></div>
-    <div class="div-machine"><make-machine name="싯업 벤치"></make-machine></div>
-    <div class="div-machine"><make-machine name="싯업 벤치(PTzone)"></make-machine></div>
-    <div class="div-machine"><make-machine name="백 익스텐션 머신"></make-machine></div>
-    <div class="div-machine"><make-machine name="어시스트 풀업 머신"></make-machine></div>
-    <div>
-        <input class="div-button" type="button" name="collectbutton" value="수집" onclick="postClickEvent(getUseMachines, getWeather)">
+    <div class="container">
+        <div class="div-machine"><make-machine name="프리웨이트"></make-machine></div>
+        <div class="div-machine"><make-machine name="프리웨이트(PTzone)"></make-machine></div>
+        <div class="div-machine"><make-machine name="런닝머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="싸이클"></make-machine></div>
+        <div class="div-machine"><make-machine name="파워렉"></make-machine></div>
+        <div class="div-machine"><make-machine name="파워렉(PTzone)"></make-machine></div>
+        <div class="div-machine"><make-machine name="스미스머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="파워 레그프레스"></make-machine></div>
+        <div class="div-machine"><make-machine name="플랫 벤치"></make-machine></div>
+        <div class="div-machine"><make-machine name="인클라인 벤치"></make-machine></div>
+        <div class="div-machine"><make-machine name="케이블"></make-machine></div>
+        <div class="div-machine"><make-machine name="케이블(PTzone)"></make-machine></div>
+        <div class="div-machine"><make-machine name="힙 익스텐션 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="레그프레스 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="이너싸이"></make-machine></div>
+        <div class="div-machine"><make-machine name="레그 익스텐션"></make-machine></div>
+        <div class="div-machine"><make-machine name="레그 컬"></make-machine></div>
+        <div class="div-machine"><make-machine name="숄더프레스 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="체스트 플라이 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="체스트 프레스 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="시티드 로우 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="랫풀다운"></make-machine></div>
+        <div class="div-machine"><make-machine name="랫풀다운(PTzone)"></make-machine></div>
+        <div class="div-machine"><make-machine name="싯업 벤치"></make-machine></div>
+        <div class="div-machine"><make-machine name="싯업 벤치(PTzone)"></make-machine></div>
+        <div class="div-machine"><make-machine name="백 익스텐션 머신"></make-machine></div>
+        <div class="div-machine"><make-machine name="어시스트 풀업 머신"></make-machine></div>
     </div>
-    <div>
+    <div class="container">
+        <input class="div-button" type="button" name="collectbutton" value="수집"
+            onclick="postClickEvent(getUseMachines, getWeather)">
+    </div>
+    <div class="container">
         <input class="div-button" type="button" name="downbutton" value="DB 다운로드" onclick="dataDownEvent()">
     </div>
 
@@ -142,13 +156,13 @@
 
 
         // 날씨 데이터 가져오기
-        function getWeather(){
+        function getWeather() {
             const weather = document.querySelector('input[name="Weather"]:checked').value;
             return weather;
         }
 
         // 사용인원 데이터 가져오기
-        function getUseMachines(){
+        function getUseMachines() {
             let usingList = [];
             findCnt = document.querySelectorAll("make-machine .userCount");
             findCnt.forEach(element => { usingList.push(Number(element.innerText)) });
@@ -161,44 +175,44 @@
                 method: "get",
                 responseType: "blob" // 응답 데이터 타입 정의
             })
-            .then(function (response){
-                console.log("다운로드 성공");
-                const blob = new Blob([response.data]);
+                .then(function (response) {
+                    console.log("다운로드 성공");
+                    const blob = new Blob([response.data]);
 
-                const fileObjectUrl = window.URL.createObjectURL(blob);
+                    const fileObjectUrl = window.URL.createObjectURL(blob);
 
-                const link = document.createElement("a");
-                link.href = fileObjectUrl;
-                link.style.display = "none";
+                    const link = document.createElement("a");
+                    link.href = fileObjectUrl;
+                    link.style.display = "none";
 
-                link.download = "gymdata.csv";
+                    link.download = "gymdata.csv";
 
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
 
-                window.URL.revokeObjectURL(fileObjectUrl);
-            })
-            .catch(function (error){
-                console.log("다운 실패");
-            })
+                    window.URL.revokeObjectURL(fileObjectUrl);
+                })
+                .catch(function (error) {
+                    console.log("다운 실패");
+                })
         }
-        function postClickEvent(getUseMachines, getWeather){
+        function postClickEvent(getUseMachines, getWeather) {
             const data_ls = {
-                weather:getWeather(),
-                use:getUseMachines()
+                weather: getWeather(),
+                use: getUseMachines()
             };
 
             axios.post("/info", data_ls)
-            .then(function (response){
-                console.log("성공");
-                const date = response.data.date;
-                alert(date + " 수집 완료");
-            })
-            .catch(function (error){
-                console.log("실패");
-                console.log(error);
-            });
+                .then(function (response) {
+                    console.log("성공");
+                    const date = response.data.date;
+                    alert(date + " 수집 완료");
+                })
+                .catch(function (error) {
+                    console.log("실패");
+                    console.log(error);
+                });
         }
     </script>
 </body>
