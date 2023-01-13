@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0-debian
+    container_name: gym-mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE='gym'
+    volumes:
+      - /home/docker/gymdata/:/var/lib/mysql/
+    restart: always
+    
+  backend:
+    build: ./
+    depends_on:
+      - mysql
+    ports:
+      - 8000:8000
