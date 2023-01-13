@@ -6,7 +6,7 @@
 
 - [분석 파일](https://github.com/mintaewon/project_gym/tree/main/analysis)
 
-- [분석 결과](https://docs.google.com/presentation/d/1T2ac3dJJWaO8pacicgMlyHf-mTADRTVmwVfx-WT7M78/edit){target="_blank"}
+- [분석 결과](https://docs.google.com/presentation/d/1T2ac3dJJWaO8pacicgMlyHf-mTADRTVmwVfx-WT7M78/edit)
 
 ----
 
