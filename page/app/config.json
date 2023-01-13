@@ -1,8 +1,10 @@
 {
     "MysqlDB":{
-        "HOST":"34.132.136.69",
-        "USERNAME": "root",
-        "PASSWORD": "1234",
-        "DATABASE": "gym"
+        "HOST":"mysql",
+        "USERNAME": "",
+        "PASSWORD": "",
+        "DATABASE": "",
+        "PORT": 3306,
+        "TABLENAME": "TIMELINE"
     }
 }

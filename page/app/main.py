@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import pytz
 import pandas as pd
-# from .db import insert_data, select_data
+from .db import insert_data, select_data
 import io
 
 class Data(BaseModel):
@@ -38,16 +38,16 @@ async def create_info(data:Data):
     df = data.dict()
     df['date'] = now_date_time()
     db.append(df)
-    # print(db)
-    # query_data.append(df['date'])
-    # query_data.append(df['weather'])
-    # query_data.extend(df['use'])
-    # insert_data(tuple(query_data))
+    query_data = []
+    query_data.append(df['date'])
+    query_data.append(df['weather'])
+    query_data.append("d" + ("".join(map(str, df['use']))))  # csv 파일로 받아올때, 0이 사라지는 것 방지
+    insert_data(tuple(query_data))
     return db[-1]
 
-# @app.get("/down/")
-# async def down_data():
-#     data = pd.DataFrame(select_data())
-#     response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
-#     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
-#     return response
+@app.get("/down/")
+async def down_data():
+    data = pd.DataFrame(select_data())
+    response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
+    response.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    return response

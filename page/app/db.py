@@ -10,13 +10,14 @@ conn = pymysql.connect(
     user=config['MysqlDB']['USERNAME'],
     password=config['MysqlDB']['PASSWORD'],
     db=config['MysqlDB']['DATABASE'],
+    port=config['MysqlDB']['PORT'],
     charset='utf8',
     )
 curs = conn.cursor(pymysql.cursors.DictCursor)
 
 # ==== insert ====
-sql = """insert into USEDATA values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-selectsql = "select * from USEDATA"
+sql = f"INSERT INTO {config['MysqlDB']['TABLENAME']} values (%s, %s, %s)"
+selectsql = f"SELECT * FROM {config['MysqlDB']['TABLENAME']}"
 def insert_data(df_row:tuple):
     curs.execute(sql, df_row)
     conn.commit()
