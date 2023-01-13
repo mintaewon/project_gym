@@ -1,9 +1,9 @@
 {
     "MysqlDB":{
-        "HOST":"mysql",
+        "HOST":"",
         "USERNAME": "",
         "PASSWORD": "",
-        "DATABASE": "",
+        "DATABASE": "gym",
         "PORT": 3306,
         "TABLENAME": "TIMELINE"
     }
