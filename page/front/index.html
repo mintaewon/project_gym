@@ -115,6 +115,7 @@
     </div>
 
     <script>
+        // 기구 별 element 만들기
         class MakeGymMachine extends HTMLElement {
             connectedCallback() {
                 let MachineName = document.createElement('div');
@@ -168,7 +169,7 @@
             findCnt.forEach(element => { usingList.push(Number(element.innerText)) });
             return usingList;
         }
-
+        // DB에서 데이터 다운로드
         function dataDownEvent() {
             axios({
                 url: "/down",
@@ -197,6 +198,8 @@
                     console.log("다운 실패");
                 })
         }
+
+        // 백엔드로 데이터 전송
         function postClickEvent(getUseMachines, getWeather) {
             const data_ls = {
                 weather: getWeather(),
