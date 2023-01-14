@@ -16,16 +16,20 @@ db = []
 
 app = FastAPI()
 
+# fastapi에서 html 전송하기 위한 jinja2 사용
 templates = Jinja2Templates(directory="./front")
 
+# 현재 시간 가져오기
 def now_date_time():
     tz = pytz.timezone('Asia/Seoul')
     return datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
 
+# 수집 메인 페이지
 @app.get("/", response_class=HTMLResponse)
 def home(request : Request):
     return templates.TemplateResponse("index.html", {'request':request})
 
+# 백엔드 동작 확인용
 @app.get("/info/")
 async def get_info():
     ls = []
@@ -33,6 +37,7 @@ async def get_info():
         ls.append({'date':i['date'], 'weather':i['weather'], 'use':i['use']})
     return ls
 
+# 클라이언트 데이터 받아오기
 @app.post("/info/")
 async def create_info(data:Data):
     df = data.dict()
@@ -45,6 +50,7 @@ async def create_info(data:Data):
     insert_data(tuple(query_data))
     return db[-1]
 
+# DB 데이터 받아온 후 
 @app.get("/down/")
 async def down_data():
     data = pd.DataFrame(select_data())
