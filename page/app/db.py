@@ -14,21 +14,26 @@ conn = pymysql.connect(
     db=config['MysqlDB']['DATABASE'],
     port=config['MysqlDB']['PORT'],
     charset='utf8',
+    cursorclass=pymysql.cursors.DictCursor
     )
-curs = conn.cursor(pymysql.cursors.DictCursor)
+
+
 
 # DB에 적재
 def insert_data(df_row:tuple):
-    sql = f"INSERT INTO {config['MysqlDB']['TABLENAME']} values (%s, %s, %s)"
-    curs.execute(sql, df_row)
-    conn.commit()
-    conn.close()
+    with conn:
+        with conn.cursor() as cursor:
+
+            sql = f"INSERT INTO {config['MysqlDB']['TABLENAME']} values (%s, %s, %s)"
+            cursor.execute(sql, df_row)
+        conn.commit()
+
 
 # 전체 데이터 가져오기
 def select_data():
-    selectsql = f"SELECT * FROM {config['MysqlDB']['TABLENAME']}"
-    curs.execute(selectsql)
-    conn.commit()
-    total_data = curs.fetchall()
-    conn.close()
-    return total_data
+    with conn:
+        with conn.cursor() as cursor:
+            selectsql = f"SELECT * FROM {config['MysqlDB']['TABLENAME']}"
+            cursor.execute(selectsql)
+            total_data = cursor.fetchall()
+        return total_data
