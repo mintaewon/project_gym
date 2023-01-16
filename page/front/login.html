@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/login.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="headerLogo">
+                <h1>페이지 접속</h1>
+            </div>
+        </header>
+        <div class="login_wrap">
+            <form>
+                <div>
+                    <input id="userId" required type="text" placeholder="아이디" maxlength="40">
+                </div>
+                <div>
+                    <input id="password" required type="password" placeholder="비밀번호" maxlength="25">
+                </div>
+                <br>
+                <div>
+                    <button id="signIn">로그인</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <div class="login_wrap">
+            <button id="signUp">회원가입</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', path='/js/login.js') }}"></script>
+</body>
+</html>

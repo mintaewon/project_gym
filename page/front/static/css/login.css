@@ -1,0 +1,13 @@
+.wrap {
+    width: 100%;
+}
+
+.headerLogo {
+    text-align: center;
+    margin-top: 250px;
+}
+
+.login_wrap {
+    display: flex;
+    justify-content: center;
+}
