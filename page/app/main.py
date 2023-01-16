@@ -2,6 +2,7 @@ from datetime import datetime
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import pytz
 import pandas as pd
@@ -15,6 +16,7 @@ class Data(BaseModel):
 db = []
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="./front/static"), name="static")
 
 # fastapi에서 html 전송하기 위한 jinja2 사용
 templates = Jinja2Templates(directory="./front")
@@ -27,7 +29,7 @@ def now_date_time():
 # 수집 메인 페이지
 @app.get("/", response_class=HTMLResponse)
 def home(request : Request):
-    return templates.TemplateResponse("index.html", {'request':request})
+    return templates.TemplateResponse("home.html", {'request':request})
 
 # 백엔드 동작 확인용
 @app.get("/info/")
@@ -57,3 +59,7 @@ async def down_data():
     response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
     return response
+
+@app.get("/login", response_class=HTMLResponse)
+def login(request : Request):
+    return templates.TemplateResponse("login.html", {'request':request})

@@ -1,0 +1,49 @@
+.container {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+.nav-left {
+    font-size: 80px;
+    color: white;
+    background-color: #999999;
+    margin-bottom: 50px;
+}
+
+#kindOfMachine {
+    font-size: 23px;
+
+}
+
+.userCount {
+    font-size: 25px
+}
+
+.controlbutton {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.div-button {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+make-machine {
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.div-machine {
+    border-bottom: 1px solid;
+}
+
+.selectWeather {
+    margin-bottom: 20px;
+}
