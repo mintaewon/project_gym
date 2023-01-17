@@ -10,27 +10,31 @@
 <body>
     <div class="wrap">
         <header>
-            <div class="headerLogo">
-                <h1>페이지 접속</h1>
+            <div class="header-logo">
+                <h1 class="logo">GYM</h1>
             </div>
         </header>
-        <div class="login_wrap">
-            <form>
-                <div>
-                    <input id="userId" required type="text" placeholder="아이디" maxlength="40">
+        <div class="login-container">
+            <form class="login-form">
+                <div class="user-select">
+                    <span><label for="users"></label><input name="user" id="users" type="radio" checked>사용자</label></span>
+                    <span><input name="user" id="admin" type="radio"><label for="admin">관리자</label></span>
                 </div>
-                <div>
-                    <input id="password" required type="password" placeholder="비밀번호" maxlength="25">
+                <div class="user-info-container">
+                    <div class="user-info">
+                        <input id="user-id" required type="text" placeholder="아이디" maxlength="40">
+                    </div>
+                    <div class="user-info">
+                        <input id="password" required type="password" placeholder="비밀번호" maxlength="25">
+                    </div>
                 </div>
-                <br>
-                <div>
-                    <button id="signIn">로그인</button>
+                <div class="sign-in-box">
+                    <button class="sign-in-btn" id="sign-in">로그인</button>
                 </div>
             </form>
         </div>
-        <br>
-        <div class="login_wrap">
-            <button id="signUp">회원가입</button>
+        <div class="sign-up-box">
+            <button id="sign-up">회원가입</button>
         </div>
     </div>
     <script src="{{ url_for('static', path='/js/login.js') }}"></script>
