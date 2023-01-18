@@ -3,20 +3,20 @@ class MakeGymMachine extends HTMLElement {
     connectedCallback() {
         let MachineName = document.createElement('div');
         MachineName.innerText = this.getAttribute('name');
-        MachineName.id = "kindOfMachine"
+        MachineName.id = "kind-of-machine"
         this.appendChild(MachineName);
 
         let MinusButton = document.createElement('button');
         MinusButton.innerText = '-';
-        MinusButton.classList.add("controlbutton")
+        MinusButton.classList.add("control-button")
         this.appendChild(MinusButton);
         let Cnt = document.createElement('span');
         Cnt.innerText = 0;
-        Cnt.classList.add("userCount")
+        Cnt.classList.add("user-count")
         this.appendChild(Cnt);
         let PlusButton = document.createElement('button');
         PlusButton.innerText = '+';
-        PlusButton.classList.add("controlbutton")
+        PlusButton.classList.add("control-button")
         this.appendChild(PlusButton);
 
 
@@ -41,7 +41,7 @@ customElements.define('make-machine', MakeGymMachine)
 
 // 날씨 데이터 가져오기
 function getWeather() {
-    const weather = document.querySelector('input[name="Weather"]:checked').value;
+    const weather = document.querySelector('input[name="weather"]:checked').value;
     return weather;
 }
 

@@ -7,3 +7,4 @@ analysis/gymdata.csv
 page/app/config.json
 page/.web
 page/node_modules
+.env

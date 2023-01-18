@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/login.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,7 +19,7 @@
         <div class="login-container">
             <form class="login-form">
                 <div class="user-select">
-                    <span><label for="users"></label><input name="user" id="users" type="radio" checked>사용자</label></span>
+                    <span><input name="user" id="users" type="radio" checked><label for="users"></label>사용자</label></span>
                     <span><input name="user" id="admin" type="radio"><label for="admin">관리자</label></span>
                 </div>
                 <div class="user-info-container">
@@ -29,7 +31,8 @@
                     </div>
                 </div>
                 <div class="sign-in-box">
-                    <button class="sign-in-btn" id="sign-in">로그인</button>
+                    <button class="sign-in-btn" id="sign-in" onclick="onSignInBtnClick()">로그인</button>
+                    <!-- <input class="sign-in-btn" id="sign-in" type="button" value="로그인" onclick="onSignInBtnClick()"> -->
                 </div>
             </form>
         </div>

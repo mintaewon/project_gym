@@ -11,16 +11,16 @@
     margin-bottom: 50px;
 }
 
-#kindOfMachine {
+#kind-of-machine {
     font-size: 23px;
 
 }
 
-.userCount {
+.user-count {
     font-size: 25px
 }
 
-.controlbutton {
+.control-button {
     width: 30px;
     height: 30px;
     margin-left: 20px;
@@ -44,6 +44,6 @@ make-machine {
     border-bottom: 1px solid;
 }
 
-.selectWeather {
+.select-weather {
     margin-bottom: 20px;
 }
