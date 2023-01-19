@@ -1,5 +1,5 @@
 from datetime import datetime
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import StreamingResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -26,13 +26,18 @@ def now_date_time():
     tz = pytz.timezone('Asia/Seoul')
     return datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
 
-# 수집 메인 페이지
+# 첫화면 로그인 페이지
 @app.get("/", response_class=HTMLResponse)
+def login(request : Request):
+    return templates.TemplateResponse("login.html", {'request':request})
+
+# 수집 메인 페이지
+@app.post("/home", response_class=HTMLResponse)
 def home(request : Request):
     return templates.TemplateResponse("home.html", {'request':request})
 
 # 백엔드 동작 확인용
-@app.get("/info/")
+@app.get("/info")
 async def get_info():
     ls = []
     for i in db:
@@ -40,7 +45,7 @@ async def get_info():
     return ls
 
 # 클라이언트 데이터 받아오기
-@app.post("/info/")
+@app.post("/info")
 async def create_info(data:Data):
     df = data.dict()
     df['date'] = now_date_time()
@@ -53,13 +58,14 @@ async def create_info(data:Data):
     return db[-1]
 
 # DB 데이터 받아온 후 
-@app.get("/down/")
+@app.get("/down")
 async def down_data():
     data = pd.DataFrame(select_data())
     response = StreamingResponse(io.StringIO(data.to_csv(index=False)), media_type="text/csv")
     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
     return response
 
-@app.get("/login", response_class=HTMLResponse)
-def login(request : Request):
-    return templates.TemplateResponse("login.html", {'request':request})
+@app.post("/test")
+async def test(form : str):
+    print(form)
+    return form

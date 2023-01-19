@@ -1,38 +1,41 @@
 // 기구 별 element 만들기
 class MakeGymMachine extends HTMLElement {
     connectedCallback() {
-        let MachineName = document.createElement('div');
-        MachineName.innerText = this.getAttribute('name');
-        MachineName.id = "kind-of-machine"
-        this.appendChild(MachineName);
+        let machineBox = document.createElement('div');
+        machineBox.classList.add("machine-box")
+        this.appendChild(machineBox);
+        
+        let machineName = document.createElement('span')
+        machineName.innerText = this.getAttribute('name');
+        machineName.style.fontSize="23px"
+        machineBox.appendChild(machineName)
 
-        let MinusButton = document.createElement('button');
-        MinusButton.innerText = '-';
-        MinusButton.classList.add("control-button")
-        this.appendChild(MinusButton);
-        let Cnt = document.createElement('span');
-        Cnt.innerText = 0;
-        Cnt.classList.add("user-count")
-        this.appendChild(Cnt);
-        let PlusButton = document.createElement('button');
-        PlusButton.innerText = '+';
-        PlusButton.classList.add("control-button")
-        this.appendChild(PlusButton);
+        let minusButton = document.createElement('button');
+        minusButton.innerText = '-';
+        minusButton.classList.add("control-button")
+        machineBox.appendChild(minusButton);
 
+        let cnt = document.createElement('span');
+        cnt.innerText = 0;
+        cnt.classList.add("user-count")
+        machineBox.appendChild(cnt);
+
+        let plusButton = document.createElement('button');
+        plusButton.innerText = '+';
+        plusButton.classList.add("control-button")
+        machineBox.appendChild(plusButton);
 
         function plusClick() {
-            Cnt.innerText = parseInt(Cnt.innerText) + 1;
+            cnt.innerText = parseInt(cnt.innerText) + 1;
         }
         function minusClick() {
-            Cnt.innerText = parseInt(Cnt.innerText) - 1;
-            if (Cnt.innerText < 0) {
-                Cnt.innerText = 0;
+            cnt.innerText = parseInt(cnt.innerText) - 1;
+            if (cnt.innerText < 0) {
+                cnt.innerText = 0;
             }
         }
-
-
-        PlusButton.addEventListener("click", plusClick);
-        MinusButton.addEventListener("click", minusClick);
+        plusButton.addEventListener("click", plusClick);
+        minusButton.addEventListener("click", minusClick);
     }
 }
 customElements.define('make-machine', MakeGymMachine)
