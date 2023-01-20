@@ -1,6 +1,6 @@
 from datetime import datetime
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import StreamingResponse, HTMLResponse
+from fastapi.responses import StreamingResponse, HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -65,7 +65,14 @@ async def down_data():
     response.headers["Content-Disposition"] = "attachment; filename=export.csv"
     return response
 
-@app.post("/test")
-async def test(form : str):
-    print(form)
-    return form
+# 회원가입 요청
+@app.post("/signup", response_class=RedirectResponse, status_code=302)
+async def test(username:str = Form(), userid:str = Form(), userpassword:str = Form(), userpasswordcheck:str = Form()):
+    print(username)
+    return "/"
+    # return username
+
+# 회원가입 페이지
+@app.get("/signup", response_class=HTMLResponse)
+def login(request : Request):
+    return templates.TemplateResponse("signup.html", {'request':request})
