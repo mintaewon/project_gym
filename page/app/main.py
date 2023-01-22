@@ -68,7 +68,7 @@ async def down_data():
 # 회원가입 요청
 @app.post("/signup", response_class=RedirectResponse, status_code=302)
 async def test(username:str = Form(), userid:str = Form(), userpassword:str = Form(), userpasswordcheck:str = Form()):
-    print(username)
+    
     return "/"
     # return username
 
