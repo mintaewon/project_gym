@@ -2,7 +2,7 @@ from fastapi import APIRouter, Form, Request, Depends
 from fastapi.responses import RedirectResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 from app.schemas import User, UserBase
-from app.crud import create_user
+from app.crud import create_user, get_user
 from app.hashing import Hasher
 from sqlalchemy.orm import Session
 from app.database import get_db
@@ -29,6 +29,11 @@ def signin_page(request : Request):
 
 # 아이디 중복확인
 @router.post("/idcheck", tags=["signup"])
-async def check_id(userid:UserBase):
-    print(userid)
-    return userid
+async def check_id(userid:UserBase, db:Session = Depends(get_db)):
+    user = get_user(db=db, user_id=userid.id)
+    if user:
+        print(1)
+        return False
+    else:
+        print(2)
+        return True
