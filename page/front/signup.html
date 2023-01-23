@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', path='/css/signup.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Sign up</title>
 </head>
 
@@ -18,7 +20,7 @@
         </header>
         <div class="container">
             <div class="sign-up-form">
-                <form method="post" action="/signup" onsubmit="return signUpBtn()">
+                <form method="post" onsubmit="return signUpBtn()">
                     <div>
                         <h3>
                             <label for="name">이름</label>
@@ -50,8 +52,9 @@
             </div>
         </div>
         <!-- <script src="static/js/signup.js"></script> -->
-        <script src="{{ url_for('static', path='/js/signup.js') }}"></script>
     </div>
+    <script src="{{ url_for('static', path='/js/signup.js') }}"></script>
+    
 </body>
 
 </html>

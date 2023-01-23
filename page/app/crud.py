@@ -6,9 +6,9 @@ def get_user(db: Session, user_id: str):
     return db.query(models.User).filter(models.User.id == user_id).first()
 
 def create_user(db: Session, user: schemas.User):
-    # fake_hashed_password = user.password + "notreallyhashed"
     db_user = models.User(id=user.id,name=user.name ,password=user.password)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
+    

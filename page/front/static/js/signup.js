@@ -1,7 +1,21 @@
+const instance = axios.create();
+
 // 아이디 중복확인
 function idDuplicationCheck(){
-
-    alert("확인")
+    const id = document.querySelector('#id').value
+    const data = {
+        id:id
+    }
+    axios.post("/idcheck", data)
+    .then(function (response){
+        console.log(response)
+        alert("성공")
+    })
+    .catch(function(error){
+        console.log(error)
+        alert("실패")
+    })
+    
 }
 
 // 가입하기 버튼 처리
