@@ -9,4 +9,4 @@ class User(Base):
 
     id = Column(String(50), primary_key=True, index=True)
     name = Column(String(50), index=True)
-    password = Column(String(50))
+    password = Column(String(255))

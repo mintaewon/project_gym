@@ -10,6 +10,7 @@ from .db import insert_data, select_data
 import io
 # -----------------------------
 from sqlalchemy.orm import Session
+from .hashing import Hasher
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine
@@ -47,7 +48,7 @@ def login(request : Request):
     return templates.TemplateResponse("login.html", {'request':request})
 
 # 수집 메인 페이지
-@app.post("/home", response_class=HTMLResponse)
+@app.get("/home", response_class=HTMLResponse)
 def home(request : Request):
     return templates.TemplateResponse("home.html", {'request':request})
 
@@ -86,7 +87,7 @@ async def test(username:str = Form(), userid:str = Form(), userpassword:str = Fo
     userinfo = schemas.User
     userinfo.id = userid
     userinfo.name = username
-    userinfo.password = userpassword
+    userinfo.password = Hasher.get_hash_password(userpassword)
     crud.create_user(db=db, user=userinfo)
     return "/"
 
