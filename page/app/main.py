@@ -1,5 +1,5 @@
 from datetime import datetime
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, Depends, HTTPException
 from fastapi.responses import StreamingResponse, HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -8,7 +8,22 @@ import pytz
 import pandas as pd
 from .db import insert_data, select_data
 import io
+# -----------------------------
+from sqlalchemy.orm import Session
 
+from . import crud, models, schemas
+from .database import SessionLocal, engine
+
+models.Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# -------------------------------------
 class Data(BaseModel):
     use : list
     weather : str
@@ -57,7 +72,7 @@ async def create_info(data:Data):
     insert_data(tuple(query_data))
     return db[-1]
 
-# DB 데이터 받아온 후 
+# DB 데이터 받아온 후 다운로드
 @app.get("/down")
 async def down_data():
     data = pd.DataFrame(select_data())
@@ -67,10 +82,13 @@ async def down_data():
 
 # 회원가입 요청
 @app.post("/signup", response_class=RedirectResponse, status_code=302)
-async def test(username:str = Form(), userid:str = Form(), userpassword:str = Form(), userpasswordcheck:str = Form()):
-    
+async def test(username:str = Form(), userid:str = Form(), userpassword:str = Form(), userpasswordcheck:str = Form(), db:Session = Depends(get_db)):
+    userinfo = schemas.User
+    userinfo.id = userid
+    userinfo.name = username
+    userinfo.password = userpassword
+    crud.create_user(db=db, user=userinfo)
     return "/"
-    # return username
 
 # 회원가입 페이지
 @app.get("/signup", response_class=HTMLResponse)

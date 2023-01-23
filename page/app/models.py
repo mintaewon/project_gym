@@ -7,6 +7,6 @@ from .database import Base
 class User(Base):
     __tablename__ = "test"
 
-    id = Column(String, primary_key=True, index=True)
-    name = Column(String)
-    password = Column(String)
+    id = Column(String(50), primary_key=True, index=True)
+    name = Column(String(50), index=True)
+    password = Column(String(50))
