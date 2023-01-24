@@ -51,9 +51,21 @@ function getWeather() {
 // 사용인원 데이터 가져오기
 function getUseMachines() {
     let usingList = [];
-    findCnt = document.querySelectorAll("make-machine .userCount");
+    findCnt = document.querySelectorAll("make-machine .user-count");
     findCnt.forEach(element => { usingList.push(Number(element.innerText)) });
     return usingList;
+}
+
+// 현재 시간 가져오기
+function dateTime(){
+    const TIME_ZONE = 3240 * 10000;
+    const d = new Date();
+
+    const date = new Date(+d + TIME_ZONE).toISOString().split('T')[0];
+    const time = d.toTimeString().split(' ')[0];
+
+    let datetime = (date + ' ' + time);
+    return datetime
 }
 // DB에서 데이터 다운로드
 function dataDownEvent() {
@@ -86,10 +98,11 @@ function dataDownEvent() {
 }
 
 // 백엔드로 데이터 전송
-function postClickEvent(getUseMachines, getWeather) {
+function postClickEvent(getUseMachines, getWeather, dateTime) {
     const data_ls = {
         weather: getWeather(),
-        use: getUseMachines()
+        use: getUseMachines(),
+        datetime: dateTime()
     };
 
     axios.post("/info", data_ls)

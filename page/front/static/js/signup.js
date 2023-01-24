@@ -1,21 +1,24 @@
 const instance = axios.create();
-let idCheck = false
+let emailCheck = false
+let userEmail = ""
 
 // 아이디 중복확인
 function idDuplicationCheck(){
-    const id = document.querySelector('#id').value
+    const email = document.querySelector('#email').value
     const data = {
-        id:id
+        email:email
     }
-    axios.post("/idcheck", data)
+    axios.post("/emailcheck", data)
     .then(function (response){
         console.log(response)
         if (response.data == true){
-            idCheck = true
+            emailCheck = true
+            userEmail = email
             alert("사용할 수 있는 아이디입니다.")
         }else{
             alert("이미 존재하는 아이디입니다.")
-            idCheck = false
+            emailCheck = false
+            userEmail = ""
         }
     })
     .catch(function(error){
@@ -24,16 +27,17 @@ function idDuplicationCheck(){
     
 }
 
-// 가입하기 버튼 처리
+// 가입하기 버튼
 function signUpBtn(){
-    // 회원가입 실패처리 코드 넣어야됨
     const psw = document.querySelector('#password').value
     const pswchk = document.querySelector('#passwordcheck').value
     const pswerr = document.querySelector('.password-error')
     let check = false
-
+    const idValue = document.querySelector('#email').value
     // 아이디 중복 확인
-
+    if (userEmail!=idValue){
+        emailCheck=false
+    }
 
     // 비밀번호 확인
     if (psw==pswchk){
@@ -45,14 +49,17 @@ function signUpBtn(){
     }
 
 
-    if (check && idCheck){
+    if (check && emailCheck){
         alert("회원가입 완료!")
-    }else{
+    }else if(!emailCheck){
         alert("아이디 중복 확인을 해주세요")
+        return false
+    }else{
+        alert("비밀번호를 확인해주세요")
         return false
     }
 
 }
 
-const idChkBtn = document.querySelector('.id-check')
+const idChkBtn = document.querySelector('.email-check')
 idChkBtn.addEventListener('click', idDuplicationCheck)

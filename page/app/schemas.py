@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
 class UserBase(BaseModel):
-    id: str
+    email: str
 
-class User(UserBase):
+class UserCreate(UserBase):
     name: str
     password: str
 
@@ -13,3 +13,4 @@ class User(UserBase):
 class Data(BaseModel):
     use : list
     weather : str
+    datetime : str
