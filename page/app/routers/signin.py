@@ -26,7 +26,7 @@ def signin_page(request : Request):
     return templates.TemplateResponse("signin.html", {'request':request})
 
 @router.post("/")
-async def signin(response:Response, request:Request,form_data:OAuth2PasswordRequestForm=Depends(), useremail:str = Form(), userpassword:str=Form(), db:Session = Depends(get_db)):
+async def signin(response:Response, request:Request, useremail:str = Form(), userpassword:str=Form(), db:Session = Depends(get_db)):
     userinfo = get_user(db=db, user_email=useremail)
     errors=[]
     if userinfo:

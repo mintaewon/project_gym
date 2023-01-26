@@ -19,3 +19,6 @@ def create_item(db:Session, data:schemas.Data):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def get_item(db: Session):
+    return db.query(models.Item)

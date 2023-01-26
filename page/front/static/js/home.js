@@ -107,12 +107,12 @@ function postClickEvent(getUseMachines, getWeather, dateTime) {
 
     axios.post("/info", data_ls)
         .then(function (response) {
-            console.log("성공");
-            const date = response.data.date;
+            // console.log("성공");
+            const date = response.data;
             alert(date + " 수집 완료");
         })
         .catch(function (error) {
-            console.log("실패");
-            console.log(error);
+            // console.log("실패");
+            // console.log(error);
         });
 }

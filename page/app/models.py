@@ -12,16 +12,15 @@ class User(Base):
     name = Column(String(50))
     password = Column(String(255))
 
-    items = relationship("Item", back_populates="owner")
+    # machines = relationship("Item", back_populates="owner")
 
 class Item(Base):
-    __tablename__ = "machine"
+    __tablename__ = "machines"
 
     id = Column(Integer, primary_key=True, index=True)
     weather = Column(String(10))
     datetime = Column(String(30))
-    owner_id = Column(Integer, ForeignKey("test.id"))
-    owner_id = Column(Integer)
+    # owner_id = Column(Integer, ForeignKey("test.id"))
     use = Column(String(35))
 
-    owner = relationship("User", back_populates="items")
+    # owner = relationship("User", back_populates="machines")
