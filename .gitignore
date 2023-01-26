@@ -4,7 +4,6 @@ local-demo/frontend/.front
 local-demo/backend/.back
 .venv
 analysis/gymdata.csv
-page/app/config.json
 page/.web
 page/node_modules
 .env

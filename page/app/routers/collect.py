@@ -10,15 +10,10 @@ from app.crud import create_item, get_item
 from sqlalchemy.orm import Session
 from app.database import get_db
 
-# -------------------- 제거 예정
-from app.db import insert_data, select_data
-db = []
-# --------------------
-
 router = APIRouter()
 
 # fastapi에서 html 전송하기 위한 jinja2 사용
-templates = Jinja2Templates(directory="./front")
+# templates = Jinja2Templates(directory="./front")
 
 # 현재 시간 가져오기
 def now_date_time():

@@ -5,22 +5,22 @@ from .database import Base
 
 
 class User(Base):
-    __tablename__ = "test"
+    __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, index=True)
     email= Column(String(50), unique=True, index=True)
     name = Column(String(50))
     password = Column(String(255))
 
-    # machines = relationship("Item", back_populates="owner")
+    # usedata = relationship("Item", back_populates="user")
 
 class Item(Base):
-    __tablename__ = "machines"
+    __tablename__ = "usedata"
 
-    id = Column(Integer, primary_key=True, index=True)
+    idx = Column(Integer, primary_key=True, index=True)
     weather = Column(String(10))
     datetime = Column(String(30))
-    # owner_id = Column(Integer, ForeignKey("test.id"))
+    # owner_id = Column(Integer, ForeignKey("user.id"))
     use = Column(String(35))
 
-    # owner = relationship("User", back_populates="machines")
+    # user = relationship("User", back_populates="usedata")
