@@ -17,7 +17,22 @@ CREATE DATABASE gym;
 USE gym;
 ```
 
-터미널에서
+- page 폴더 최상단에 `.env` 파일 생성
+
+```
+MYSQL_USER=
+MYSQL_PASSWORD=
+MYSQL_HOST=
+MYSQL_PORT=
+MYSQL_DATABASE=gym
+
+SECRET_KEY=
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+
+- 터미널에서
 ```bash
 source install.sh
 ```
