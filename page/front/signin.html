@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/signin.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root" class="wrap">
+        <header>
+            <div class="header-logo">
+                <h1 class="logo">GYM</h1>
+            </div>
+        </header>
+        <div class="login-container">
+            <form class="login-form" method="post">
+                <div class="user-select">
+                    <span><input name="user" id="users" type="radio" checked><label for="users"></label>사용자</label></span>
+                    <span><input name="user" id="admin" type="radio"><label for="admin">관리자</label></span>
+                </div>
+                <div class="user-info-container">
+                    <div class="user-info">
+                        <input id="user-id" name="useremail" required type="email" placeholder="아이디" maxlength="40" value="{{id}}">
+                    </div>
+                    <div class="user-info">
+                        <input id="password" name="userpassword" required type="password" placeholder="비밀번호" maxlength="25">
+                    </div>
+                </div>
+                {% for error in errors %}
+                <div>{{error}}</div>
+                {% endfor %}
+                <div class="sign-in-box">
+                    <button type="submit" class="sign-in-btn" id="sign-in" onclick="onSignInBtnClick(event)">로그인</button>
+                </div>
+            </form>
+            
+        </div>
+        <div class="sign-up-box">
+            <button id="sign-up" type="button"><a href="/signup">회원가입</a></button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', path='/js/signin.js') }}"></script>
+</body>
+</html>
